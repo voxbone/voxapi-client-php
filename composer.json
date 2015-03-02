@@ -1,0 +1,14 @@
+{
+   "config": {
+      "vendor-dir": "packages/"
+    },
+   "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/apimatic/unirest-php"
+        }
+    ],
+    "require": {
+        "apimatic/unirest-php" : "dev-master"
+    }
+}
