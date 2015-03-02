@@ -451,7 +451,9 @@ class RegulationController {
         //prepare headers
         $headers = array (
             'User-Agent' => 'APIMATIC 2.0',
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
+            'Content-type' => 'application/json; charset=utf-8'
+
         );
 
         //prepare API request
