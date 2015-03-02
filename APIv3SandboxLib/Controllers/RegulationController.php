@@ -52,17 +52,26 @@ class RegulationController {
         $headers = array (
             'User-Agent' => 'APIMATIC 2.0',
             'Accept' => 'application/json',
-            'Content-type' => 'application/json; charset=utf-8'
+            'Content-type' => 'multipart/form-data; boundary=XXX'
         );
 
-        //prepare parameters
-        $parameters = array (
-            'address' => json_encode($address),
-            "file" => Unirest::file($proof)
-        );
+        //prepare body
+        $body = '--XXX'."\n".'Content-ID: createRegulationAddressRequest'."\n".'Content-type: application/json'."\n\n".''
+            . json_encode($address) .
+            ''."\n".'--XXX--'."\n".'';
+        if (!is_null($proof)) {
+            $data = file_get_contents($proof);
+            $uniProof = Unirest::file($proof);
+            $body = $body
+                .'Content-ID: proofOfAddress'."\n"
+                .'Content-Type:'. $uniProof->getMimeType()."\n"
+                .'Content-Disposition: filename="' . $uniProof->getFilename() .'"'. "\n\n"
+                .$data
+                ."\n".'--XXX--';
+        }
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, $parameters, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, $body, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -391,16 +400,21 @@ class RegulationController {
         //prepare headers
         $headers = array (
             'User-Agent' => 'APIMATIC 2.0',
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
+            'Content-type' => 'multipart/form-data; boundary=XXX'
         );
 
-        //prepare parameters
-        $parameters = array (
-            "file" => Unirest::file($proof)
-        );
+        //prepare body
+        $data = file_get_contents($proof);
+        $uniProof = Unirest::file($proof);
+        $body = '--XXX'."\n".'Content-ID: proofOfAddress'."\n"
+                .'Content-Type:'. $uniProof->getMimeType()."\n"
+                .'Content-Disposition: filename="' . $uniProof->getFilename() .'"'. "\n\n"
+                .$data
+                ."\n".'--XXX--';
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, $parameters, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, $body, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
