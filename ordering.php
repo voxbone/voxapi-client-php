@@ -74,7 +74,9 @@ try{
     echo $cartIdentifier2." has been deleted.";
   
     //Use cartIdentifier to add to cart
-    $didGroupId = 9619;
+    $didGroups = $inventoryController->getDidgroups("DNK",0,1,NULL,NULL,NULL,NULL,NULL,NULL);
+    $didGroupId = $didGroups->didGroups[0]->didGroupId;
+    echo $didGroupId;
     $quantity = 5;
     $didCartItem = new DidCartItemModel($didGroupId, $quantity);
     $didCartItem = $didCartItem->to_json(); 
