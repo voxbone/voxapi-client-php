@@ -38,7 +38,7 @@ For using this SDK do the following:
     3. Include the ProvisioningAPILib.php file in your code where
        needed using "require_once" construct.
     4. You can now instantiate controllers and call the respective methods.
-    5. index.php is a sample application that uses this library with API call examples from different modules.
+    5. cdrs.php, inventory.php, ordering.php, configuration.php, and regulation.php contain sample code that uses this library.
 
 Contributing:
 ============
