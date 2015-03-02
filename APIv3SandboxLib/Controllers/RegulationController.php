@@ -75,7 +75,6 @@ class RegulationController {
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
-
         //Error handling using HTTP status codes
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
@@ -108,7 +107,9 @@ class RegulationController {
         //prepare headers
         $headers = array (
             'User-Agent' => 'APIMATIC 2.0',
-            'Accept' => 'application/json'
+            'Accept' => 'application/json',
+             'Content-type' => 'application/json; charset=utf-8'
+
         );
 
         //prepare API request
@@ -116,7 +117,6 @@ class RegulationController {
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
-
         //Error handling using HTTP status codes
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
@@ -278,7 +278,6 @@ class RegulationController {
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
-
         //Error handling using HTTP status codes
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
@@ -315,7 +314,6 @@ class RegulationController {
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
-
         //Error handling using HTTP status codes
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
@@ -418,7 +416,6 @@ class RegulationController {
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
-
         //Error handling using HTTP status codes
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
@@ -453,7 +450,6 @@ class RegulationController {
             'User-Agent' => 'APIMATIC 2.0',
             'Accept' => 'application/json',
             'Content-type' => 'application/json; charset=utf-8'
-
         );
 
         //prepare API request
@@ -461,7 +457,6 @@ class RegulationController {
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
-
         //Error handling using HTTP status codes
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
