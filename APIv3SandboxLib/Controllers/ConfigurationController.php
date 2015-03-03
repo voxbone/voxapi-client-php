@@ -54,7 +54,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::post($queryUrl, $headers, json_encode($body), Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::post($queryUrl, $headers, json_encode($body), $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -104,7 +104,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -141,7 +141,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, json_encode($body), Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, json_encode($body), $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -183,7 +183,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::delete($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::delete($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -239,7 +239,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -276,7 +276,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, json_encode($body), Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, json_encode($body), $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -318,7 +318,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::delete($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::delete($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -374,7 +374,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -411,7 +411,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, json_encode($body), Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, json_encode($body), $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -453,7 +453,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::delete($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::delete($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -487,7 +487,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -521,7 +521,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -558,7 +558,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, json_encode($body), Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, json_encode($body), $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -602,7 +602,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::delete($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::delete($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -639,7 +639,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, json_encode($body), Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, json_encode($body), $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -681,7 +681,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::delete($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::delete($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -722,7 +722,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -763,7 +763,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -804,7 +804,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -845,7 +845,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -895,7 +895,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -936,7 +936,7 @@ class ConfigurationController {
         );
 
         //prepare API request
-        $request = Unirest::put($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::put($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
