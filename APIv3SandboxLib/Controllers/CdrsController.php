@@ -51,7 +51,7 @@ class CdrsController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL, $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -91,7 +91,7 @@ class CdrsController {
         );
 
         //prepare API request
-        $request = Unirest::get($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::get($queryUrl, $headers, NULL,  $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
@@ -136,7 +136,7 @@ class CdrsController {
         );
 
         //prepare API request
-        $request = Unirest::post($queryUrl, $headers, NULL, Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+        $request = Unirest::post($queryUrl, $headers, NULL,  $this->basicAuthUserName, $this->basicAuthPassword);
 
         //and invoke the API call request to fetch the response
         $response = $request->getResponse();
