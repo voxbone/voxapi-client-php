@@ -35,7 +35,7 @@ For using this SDK do the following:
        directory.
     2. Use composer (https://getcomposer.org/) to install the dependencies. Usually this can be done through a
        context menu command "php composer.phar install".
-    3. Include the ProvisioningAPILib.php file in your code where
+    3. Include the APIv3SandboxLib.php file in your code where
        needed using "require_once" construct.
     4. You can now instantiate controllers and call the respective methods.
     5. cdrs.php, inventory.php, ordering.php, configuration.php, and regulation.php contain sample code that uses this library.
