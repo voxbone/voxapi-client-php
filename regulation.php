@@ -1,8 +1,18 @@
 <?php
 
-// ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once('./APIv3SandboxLib.php');
+
+require './vendor/autoload.php';
+
+use APIv3SandboxLib\Controllers\RegulationController;
+use APIv3SandboxLib\Controllers\InventoryController;
+
+use APIv3SandboxLib\Models\AddressModel;
+use APIv3SandboxLib\Models\DidIdListModel;
+
+use APIv3SandboxLib\Configuration;
+use Unirest\Unirest;
 
 
 /* Regulation Flow:
@@ -21,8 +31,9 @@ require_once('./APIv3SandboxLib.php');
     Delete Address
 */
 
-$controller = new RegulationController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
-$inventoryController = new InventoryController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+Unirest::auth(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+$controller = new RegulationController();
+$inventoryController = new InventoryController();
 
 try{
   //Get Zip Code DEU
@@ -54,13 +65,11 @@ try{
    $body = new AddressModel($salutation, NULL, NULL, $firstName, $lastName, 
     $countryCodeA3, $city, $zipCode, $streetName, $buildingNumber, NULL, $customerReference, 
     $extraFields, $didType, $destinationCountryCodeA3);
-    $body = $body->to_json();  
 
    $newAddress = $controller->address($body);
    echo "addressId: ".$newAddress->addressId."<br/>";
    $newAddressId = $newAddress->addressId;
 
-   //Upload Proof of Address
    echo "<br/><br/>";
    echo '<b>Upload Proof of Address</b><br/>';
    $uploadProofOfAddress = $controller->addressProof($newAddressId, "pof.jpg");
@@ -136,7 +145,6 @@ try{
   $didId = $getDidId->dids[0]->didId;
   $didIds = array($didId);
   $body = new DidIdListModel($didIds);
-  $body = $body->to_json();  
   $linkAddress = $controller->addressLink($verifiedAddress, $body);
   echo "didId: ".$didId."<br/>";
   echo "status: ".$verification->status."<br/>";

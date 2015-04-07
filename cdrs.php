@@ -2,8 +2,12 @@
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once('./APIv3SandboxLib.php');
 
+require './vendor/autoload.php';
+
+use APIv3SandboxLib\Controllers\CdrsController;
+use APIv3SandboxLib\Configuration;
+use Unirest\Unirest;
 
 /* CDRs Flow:
 
@@ -13,15 +17,16 @@ require_once('./APIv3SandboxLib.php');
     Download File
 */
 
-$controller = new CdrsController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+Unirest::auth(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+$controller = new CdrsController();
 try{
-
 //Request File Creation
-$fileCreation = $controller->createCdrsFileRequest('2014', '12');
+$fileCreation = $controller->createCdrsFileRequest('2015', '03');
 echo "<br/><br/><br/>";
 echo "<b>Request File Creation Request content</b><br/>";
 echo "<br/>";
 echo "status: ".$fileCreation->status."<br/>";
+echo Configuration::$BasicAuthUserName;
 
 //List Files
 $files = $controller->getCdrsFiles();
@@ -36,10 +41,9 @@ $fileName = $files->fileNames[0];
 
 //Download Files
 $downloadFiles = $controller->getCdrsFiles($fileName);
-var_dump($downloadFiles);
 echo "<br/><br/><br/>";
 echo "<b>Download Files Request content</b><br/>";
-echo "fileName: ".$downloadFiles->fileName."<br/>";
+echo "fileName: ".$downloadFiles->fileNames[0]."<br/>";
 
 }catch (APIException $e) {
       echo 'Caught exception: ',  $e->getMessage(), "<br/><br />\n";

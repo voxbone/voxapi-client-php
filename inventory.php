@@ -2,8 +2,12 @@
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once('./APIv3SandboxLib.php');
 
+require './vendor/autoload.php';
+
+use APIv3SandboxLib\Controllers\InventoryController;
+use APIv3SandboxLib\Configuration;
+use Unirest\Unirest;
 
 /* Inventory Flow:
 
@@ -19,8 +23,8 @@ require_once('./APIv3SandboxLib.php');
     List Trunk
     List Zone
 */
-
-$controller = new InventoryController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+Unirest::auth(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+$controller = new InventoryController();
 try{
 
 //List Countries
@@ -140,15 +144,6 @@ echo "featureId: ".$feature->features[0]->featureId."<br/>";
 echo "name: ".$feature->features[0]->name."<br/>";
 echo "description: ".$feature->features[0]->description."<br/>";
 
-//List Trunk
-$trunk = $controller->getTrunks();
-echo "<br/><br/><br/>";
-echo "<b>List Trunk content</b><br/>";
-echo "trunk: ".$trunk->trunks[0]."<br/>";
-echo "trunk: ".$trunk->trunks[1]."<br/>";
-echo "trunk: ".$trunk->trunks[2]."<br/>";
-echo "trunk: ".$trunk->trunks[3]."<br/>";
-
 //List Zone
 $zone = $controller->getZones();
 echo "<br/><br/><br/>";
@@ -157,6 +152,15 @@ echo "Zone: ".$zone->zone[0]."<br/>";
 echo "Zone: ".$zone->zone[1]."<br/>";
 echo "Zone: ".$zone->zone[2]."<br/>";
 echo "Zone: ".$zone->zone[3]."<br/>";
+
+//List Trunk
+$trunk = $controller->getTrunks();
+echo "<br/><br/><br/>";
+echo "<b>List Trunk content</b><br/>";
+echo "trunk: ".$trunk->trunks[0]."<br/>";
+echo "trunk: ".$trunk->trunks[1]."<br/>";
+echo "trunk: ".$trunk->trunks[2]."<br/>";
+echo "trunk: ".$trunk->trunks[3]."<br/>";
 
   }catch (APIException $e) {
       echo 'Caught exception: ',  $e->getMessage(), "<br/><br />\n";

@@ -1,9 +1,23 @@
 <?php
 
-// ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once('./APIv3SandboxLib.php');
+require './vendor/autoload.php';
 
+use APIv3SandboxLib\Controllers\InventoryController;
+use APIv3SandboxLib\Controllers\OrderingController;
+
+use APIv3SandboxLib\Models\CartCreateModel;
+use APIv3SandboxLib\Models\CartItemModel;
+  use APIv3SandboxLib\Models\DidCartItemModel;
+  use APIv3SandboxLib\Models\CapacityCartItemModel;
+  use APIv3SandboxLib\Models\CreditPackageCartItemModel;
+
+use APIv3SandboxLib\Models\QuantityModel;
+use APIv3SandboxLib\Models\DidIdListModel;
+
+use APIv3SandboxLib\Configuration;
+use Unirest\Unirest;
 
 // Ordering Flow 1: Account Balance -> createCart -> AddToCart -> get Order product ID -> RemoveFromCart -> listCart -> CheckoutCart -> cancelDids -> listOrder 
 // Ordering Flow 2: createCart -> deleteCart
@@ -20,8 +34,9 @@ require_once('./APIv3SandboxLib.php');
     List orders
     List Carts
 */
-$controller = new OrderingController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
-$inventoryController = new InventoryController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+Unirest::auth(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+$controller = new OrderingController();
+$inventoryController = new InventoryController();
 
 try{
   $accountBal = $controller->getAccountBalance();
@@ -40,7 +55,6 @@ try{
     $customerReference = "Cart #1";
     $description = "Full Cart Checkout";
     $body = new CartCreateModel($customerReference, $description);
-    $body = $body->to_json();  
     $createCart = $controller->updateCart($body);
     echo "<br/><br/>";
     echo "<b>createCart Response</b><br/>";
@@ -55,7 +69,6 @@ try{
     $customerReference2 = "Cart #2";
     $description2 = "Will be Deleted";
     $body = new CartCreateModel($customerReference2, $description2);
-    $body = $body->to_json();  
     $createCart2 = $controller->updateCart($body);
     echo "<br/><br/>";
     echo "<b>createCart (to be deleted) Response</b><br/>";
@@ -79,9 +92,7 @@ try{
     echo $didGroupId;
     $quantity = 5;
     $didCartItem = new DidCartItemModel($didGroupId, $quantity);
-    $didCartItem = $didCartItem->to_json(); 
     $body = new CartItemModel($didCartItem, NULL, NULL);
-    $body = $body->to_json();  
     $addtoCart = $controller->createCartProduct($cartIdentifier, $body);
     echo "<br/><br/>";
     echo "<b>addtoCart Response</b><br/>";
@@ -99,10 +110,9 @@ try{
 
     //Remove From Cart
     function removeFromTheCart($cartIdentifier, $orderProductId) {
-      $controller = new OrderingController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+      $controller = new OrderingController();
       $removequantity = 1;
       $body = new QuantityModel($removequantity);
-      $body = $body->to_json();  
       $removeFromCart = $controller->createCartProductRemove($cartIdentifier, $orderProductId, $body);
       echo "<b>removeFromCart Response</b><br/>";
       echo "status: ".$removeFromCart->status."<br/>";
@@ -135,7 +145,6 @@ try{
       echo "<br/><br/>";
       $didIds = array($didId);
       $body = new DidIdListModel($didIds);
-      $body = $body->to_json();  
       $cancelDids = $controller->createCancel($body);
       echo "<b>Get Cancel Response</b><br/>";
       echo "numberCancelled: ".$cancelDids->numberCancelled."<br/>";
@@ -143,7 +152,7 @@ try{
 
     function listTheOrder($orderReference) {
       //List Order
-      $controller = new OrderingController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+      $controller = new OrderingController();
       $listOrder = $controller->getOrders(0, 1, $orderReference, NULL, NULL, NULL, NULL, NULL, NULL);
       echo "<b>List Order Response</b><br/>";
       echo "orderId: ".$listOrder->orders[0]->orderId."<br/>";

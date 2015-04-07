@@ -2,8 +2,31 @@
 
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once('./APIv3SandboxLib.php');
+require './vendor/autoload.php';
 
+use APIv3SandboxLib\Controllers\ConfigurationController;
+use APIv3SandboxLib\Controllers\InventoryController;
+
+use APIv3SandboxLib\Models\DidConfigurationModel;
+  use APIv3SandboxLib\Models\CallerIdModel;
+  use APIv3SandboxLib\Models\PeerModel;
+
+use APIv3SandboxLib\Models\ACapacityGroupSaveModel;
+  use APIv3SandboxLib\Models\CapacityGroupSaveModel;
+
+use APIv3SandboxLib\Models\FaxUriSaveModel;
+  use APIv3SandboxLib\Models\FaxUriModel;
+
+use APIv3SandboxLib\Models\AVoiceUriSaveModel;
+  use APIv3SandboxLib\Models\VoiceUriSaveModel;
+
+use APIv3SandboxLib\Models\SmsLinkGroupSaveModel;
+
+use APIv3SandboxLib\Models\SmsLinkSaveModel;
+  use APIv3SandboxLib\Models\SmsLinkModel;
+
+use APIv3SandboxLib\Configuration;
+use Unirest\Unirest;
 
 /* Configuration Flow:
 1. Create capacity group, List Capacity group, Delete capacity Group
@@ -16,13 +39,14 @@ require_once('./APIv3SandboxLib.php');
 8. Apply Configurations
 */
 
-$controller = new ConfigurationController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+Unirest::auth(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+$controller = new ConfigurationController();
 try{
   
   /***** CHANGE THESE BEFORE EACH TEST! ****/
   
     //voice URI
-    $voiceuri = 'example@rvoxbone.com';
+    $voiceuri = 'example@voxbone.com';
 
 
     //sms link group name
@@ -41,9 +65,7 @@ try{
   $description = "Create CapacityGroup";
   $capacityGroupId = NULL;
   $capacityGroup = new CapacityGroupSaveModel($maximumCapacity, $description, $capacityGroupId);
-  $capacityGroup = $capacityGroup->to_json();  
   $body = new ACapacityGroupSaveModel($capacityGroup);
-  $body = $body->to_json();  
   $createCapacity = $controller->updateCapacityGroup($body);
   echo "<br/><br/><br/>";
   echo "<b>Create Capacity Group Response</b><br/>";
@@ -86,9 +108,7 @@ try{
   $faxFileFormat = 'Pdf';
   $uri = 'snacar@voxbone.com';
   $faxUri = new FaxUriModel(NULL, $deliveryMethod, $faxFileFormat, $uri, NULL, NULL, NULL, NULL);
-  $faxUri = $faxUri->to_json();  
   $body = new FaxUriSaveModel($faxUri);
-  $body = $body->to_json();  
   $createFaxUri = $controller->updateFaxUri($body);
   echo "<br/><br/><br/>";
   echo "<b>Create Fax URI Response</b><br/>";
@@ -116,14 +136,14 @@ try{
   echo "useHtml: ".$listFaxUri->faxUris[0]->useHtml."<br/>";
 
   //Delete fax
-    $listFaxUri = $controller->getFaxUris(0,10, NULL, NULL, NULL, NULL);
-    $faxUriId = $listFaxUri->faxUris[0]->faxUriId;
+  $listFaxUri = $controller->getFaxUris(0,10, NULL, NULL, NULL, NULL);
+  $faxUriId = $listFaxUri->faxUris[0]->faxUriId;
 
-    $deleteFaxUri = $controller->deleteFaxUri($faxUriId);
-    echo "<br/><br/><br/>";
-    echo "<b>Delete Fax URI Response</b><br/>";
-    echo "FaxUri Deleted: ".$faxUriId."<br/>";
-    echo "status: ".$deleteFaxUri->status."<br/>";
+  $deleteFaxUri = $controller->deleteFaxUri($faxUriId);
+  echo "<br/><br/><br/>";
+  echo "<b>Delete Fax URI Response</b><br/>";
+  echo "FaxUri Deleted: ".$faxUriId."<br/>";
+  echo "status: ".$deleteFaxUri->status."<br/>";
 
   //List Fax URIs
   $listFaxUri = $controller->getFaxUris(0,10, NULL, NULL, NULL, NULL);
@@ -143,9 +163,7 @@ try{
   $voiceUriProtocol = "SIP";
   $description = 'Voice URI Created';
   $voiceUri = new VoiceUriSaveModel(NULL, NULL, $voiceUriProtocol, $voiceuri, $description);
-  $voiceUri = $voiceUri->to_json();  
   $body = new AVoiceUriSaveModel($voiceUri);
-  $body = $body->to_json();  
   $createVoiceUri = $controller->updateVoiceUri($body);
   echo "<br/><br/><br/>";
   echo "<b>Create Voice URI Response</b><br/>";
@@ -167,14 +185,11 @@ try{
   echo "description: ".$listVoiceUri->voiceUris[0]->description."<br/>";
   
   //Delete voice URI
-  // $listVoiceUris = $controller->getVoiceUris(0,10, NULL, NULL, NULL, NULL);
-  // $voiceUriId =$listVoiceUris->voiceUris[0]->voiceUriId;
-
-    $deleteVoiceUri = $controller->deleteVoiceUri($voiceUriId);
-    echo "<br/><br/><br/>";
-    echo "<b>Delete Voice URI Response</b><br/>";
-    echo "voiceUri deleted: ".$voiceUriId."<br/>";
-    echo "status: ".$deleteVoiceUri->status."<br/>";
+  $deleteVoiceUri = $controller->deleteVoiceUri($voiceUriId);
+  echo "<br/><br/><br/>";
+  echo "<b>Delete Voice URI Response</b><br/>";
+  echo "voiceUri deleted: ".$voiceUriId."<br/>";
+  echo "status: ".$deleteVoiceUri->status."<br/>";
   
 
   //List Voice URIs
@@ -190,7 +205,6 @@ try{
 
   //Create SMS Link Groups 
   $body = new SmsLinkGroupSaveModel($smsLinkGroupName);
-  $body = $body->to_json(); 
   $smsLinkGroup = $controller->updateSmsLinkGroup($body);
   echo "<br/><br/><br/>";
   echo "<b>Create SMS Link Group Response</b><br/>";
@@ -220,9 +234,7 @@ try{
   $weight = '10';
   $direction = 'FROM_VOXBONE';
   $smsLink = new SmsLinkModel(NULL, $smsLinkGroupId, $smsLinkName, $type, NULL, NULL, $url, $weight, $direction, NULL, NULL, NULL, NULL);
-  $smsLink = $smsLink->to_json(); 
   $body = new SmsLinkSaveModel($smsLink);
-  $body = $body->to_json(); 
   $newSmsLink = $controller->updateSmsLink($body);
   echo "<br/><br/><br/>";
   echo "<b>Create SMS Link Response</b><br/>";
@@ -240,13 +252,13 @@ try{
   $smsLinkId = $smsLink->smsLinks[0]->smsLinkId;
 
   //Delete SMS Link
-  $smsLinks = $controller->getSmsLinks(NULL, NULL, NULL, NULL);
-  $smsLinkIdDelete = $smsLinks->smsLinks[0]->smsLinkId;
-  $deleteSmsLink = $controller->deleteSmsLink($smsLinkIdDelete);
-  echo "<br/><br/><br/>";
-  echo "<b>Delete SMS Link Response</b><br/>";
-  echo "smsLink Deleted: ".$smsLinkId."<br/>";
-  echo "status: ".$deleteSmsLink->status."<br/>";
+  // $smsLinks = $controller->getSmsLinks(NULL, NULL, NULL, NULL);
+  // $smsLinkIdDelete = $smsLinks->smsLinks[0]->smsLinkId;
+  // $deleteSmsLink = $controller->deleteSmsLink($smsLinkIdDelete);
+  // echo "<br/><br/><br/>";
+  // echo "<b>Delete SMS Link Response</b><br/>";
+  // echo "smsLink Deleted: ".$smsLinkId."<br/>";
+  // echo "status: ".$deleteSmsLink->status."<br/>";
 
 
   // List smsLinks
@@ -269,9 +281,9 @@ try{
   echo "ips: ".$pops->pops[0]->ips[0]."<br/>";
 
   //List DIDs
-  $inventoryController = new inventoryController(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
+  $inventoryController = new inventoryController();
   $getDidIds = $inventoryController->getDids(1, 0, NULL, NULL, NULL, NULL, NULL);
-  echo "<b>Get DID Response</b><br/>";
+  echo "<br><br><b>Get DID Response</b><br/>";
   echo "didid: ".$getDidIds->dids[0]->didId."<br/>";
   $didId = $getDidIds->dids[0]->didId;
   echo "<br/><br/>";
@@ -279,8 +291,7 @@ try{
   //Apply Configuration
   $didIds = array($didId);
   $body = new DidConfigurationModel($didIds, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
-    NULL, NULL, NULL, NULL, NULL, 'true' );
-  $body = $body->to_json(); 
+    NULL, NULL, NULL, NULL, NULL, 'true', NULL );
   $applyConfig = $controller->createConfiguration($body);
   echo "<b>Apply Configuration Response</b><br/>";
   $configOption = $applyConfig->messages[0]->configOption;

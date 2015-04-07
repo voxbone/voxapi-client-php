@@ -1,14 +1,34 @@
 {
-   "config": {
-      "vendor-dir": "packages/"
-    },
-   "repositories": [
+    "name": "voxapi-client-php",
+    "type": "library",
+    "description": "The Provisioning API enables Voxbone customers to automate the ordering and configuration of phone numbers and channels.n",
+    "keywords": ["DID, SIP Trunking, VoIP,"],
+    "homepage": "https://www.voxbone.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sacha Nacar",
+            "email": "developers@voxbone.com",
+            "homepage": "https://developers.voxbone.com",
+            "role": "Developer Community Manager"
+        }
+    ],
+    "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/apimatic/unirest-php"
         }
     ],
     "require": {
-        "apimatic/unirest-php" : "dev-master"
+        "php": ">=5.4.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "apimatic/unirest-php": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "APIv3SandboxLib\\": "src/"
+        }
     }
 }
