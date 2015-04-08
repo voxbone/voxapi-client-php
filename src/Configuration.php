@@ -9,7 +9,7 @@ namespace APIv3SandboxLib;
 
 class Configuration {
     //The base Uri for API calls
-    const BASEURI = 'http://sandbox.voxbone.com/ws-voxbone/services/rest';
+    const BASEURI = 'https://sandbox.voxbone.com/ws-voxbone/services/rest';
     public static $BasicAuthUserName = "your_username";
   	public static $BasicAuthPassword = "your_password";
 
