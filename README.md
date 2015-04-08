@@ -18,8 +18,8 @@ Additionally you need to add your credentials in the Configuration.php file:
 
 ``````
 
-  public static $BasicAuthUserName = "username";
-  public static $BasicAuthPassword = "password";
+  public static $BasicAuthUserName = "your_username";
+  public static $BasicAuthPassword = "you_password";
 
 ``````
 
