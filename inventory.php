@@ -28,7 +28,7 @@ $controller = new InventoryController();
 try{
 
 //List Countries
-$listCountries = $controller->getCountries(0,1);
+$listCountries = $controller->getCountries(0,1, NULL, 'GEOGRAPHIC');
 
 echo "<br/><br/><br/>";
 echo "<b>List Countries Request content</b><br/>";
