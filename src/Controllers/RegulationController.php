@@ -41,7 +41,7 @@ class RegulationController {
             ''."\n".'--XXX--'."\n".'';
         if (!is_null($proof)) {
             $data = file_get_contents($proof);
-            $uniProof = Unirest::file($proof);
+            $uniProof = MyFile::add($proof);
             $body = $body
                 .'Content-ID: proofOfAddress'."\n"
                 .'Content-Type:'. $uniProof->getMimeType()."\n"
@@ -379,7 +379,7 @@ class RegulationController {
         );
         //prepare body
         $data = file_get_contents($proof);
-        $uniProof = Unirest\File::add($proof);
+        $uniProof = MyFile::add($proof);
         $body = '--XXX'."\n".'Content-ID: proofOfAddress'."\n"
                 .'Content-Type:'. $uniProof->getMimeType()."\n"
                 .'Content-Disposition: filename="' . $uniProof->getFilename() .'"'. "\n\n"
@@ -490,4 +490,19 @@ class RegulationController {
         return $response->body;
     }
         
+}
+
+class MyFile {
+        /**
+     * Prepares a file for upload. To be used inside the parameters declaration for a request.
+     * @param string $path The file path
+     */
+    public static function add($filename, $mimetype = '', $postname = '')
+    {
+        if (function_exists('curl_file_create')) {
+            return curl_file_create($filename, $mimetype = '', $postname = '');
+        } else {
+            return sprintf('@%s;filename=%s;type=%s', $filename, $postname ?: basename($filename), $mimetype);
+        }
+    }
 }
