@@ -42,9 +42,9 @@ use Unirest\Unirest;
 Unirest::auth(Configuration::$BasicAuthUserName, Configuration::$BasicAuthPassword);
 $controller = new ConfigurationController();
 try{
-  
+
   /***** CHANGE THESE BEFORE EACH TEST! ****/
-  
+
     //voice URI
     $voiceuri = 'example@voxbone.com';
 
@@ -56,7 +56,7 @@ try{
     $smsLinkName = "example";
 
 
-  
+
   /****************************************/
 
 
@@ -93,7 +93,7 @@ try{
   echo "CapacityGroup Deleted: ".$capacityGroupIdDelete."<br/>";
   echo "status: ".$deleteCapacity->status."<br/>";
 
-  //List Capacity Groups  
+  //List Capacity Groups
   $listCapacities = $controller->getCapacityGroups(0,10, NULL, NULL);
   echo "<br/><br/><br/>";
   echo "<b>List Capacity Groups Response</b><br/>";
@@ -183,14 +183,14 @@ try{
   echo "voiceUriProtocol: ".$listVoiceUri->voiceUris[0]->voiceUriProtocol."<br/>";
   echo "uri: ".$listVoiceUri->voiceUris[0]->uri."<br/>";
   echo "description: ".$listVoiceUri->voiceUris[0]->description."<br/>";
-  
+
   //Delete voice URI
   $deleteVoiceUri = $controller->deleteVoiceUri($voiceUriId);
   echo "<br/><br/><br/>";
   echo "<b>Delete Voice URI Response</b><br/>";
   echo "voiceUri deleted: ".$voiceUriId."<br/>";
   echo "status: ".$deleteVoiceUri->status."<br/>";
-  
+
 
   //List Voice URIs
   $listVoiceUris = $controller->getVoiceUris(0,10, NULL, NULL, NULL, NULL);
@@ -203,7 +203,7 @@ try{
   echo "description: ".$listVoiceUris->voiceUris[0]->description."<br/>";
   $voiceUriId = $listVoiceUris->voiceUris[0]->voiceUriId;
 
-  //Create SMS Link Groups 
+  //Create SMS Link Groups
   $body = new SmsLinkGroupSaveModel($smsLinkGroupName);
   $smsLinkGroup = $controller->updateSmsLinkGroup($body);
   echo "<br/><br/><br/>";
@@ -228,12 +228,12 @@ try{
   echo "name: ".$smsLinkGroups->smsLinkGroups[0]->name."<br/>";
   $groupId = $smsLinkGroups->smsLinkGroups[0]->id;
 
-  //Create SMS Link 
+  //Create SMS Link
   $type = 'SIP';
   $url = 'sip:foo@bar.com';
   $weight = '10';
   $direction = 'FROM_VOXBONE';
-  $smsLink = new SmsLinkModel(NULL, $smsLinkGroupId, $smsLinkName, $type, NULL, NULL, $url, $weight, $direction, NULL, NULL, NULL, NULL);
+  $smsLink = new SmsLinkModel(NULL, $smsLinkGroupId, $smsLinkName, $type, NULL, NULL, $url, $weight, $direction, NULL, NULL, NULL, NULL, NULL);
   $body = new SmsLinkSaveModel($smsLink);
   $newSmsLink = $controller->updateSmsLink($body);
   echo "<br/><br/><br/>";
@@ -290,14 +290,14 @@ try{
 
   //Apply Configuration
   $didIds = array($didId);
-  $body = new DidConfigurationModel($didIds, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 
+  $body = new DidConfigurationModel($didIds, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
     NULL, NULL, NULL, NULL, NULL, 'true', NULL );
   $applyConfig = $controller->createConfiguration($body);
   echo "<b>Apply Configuration Response</b><br/>";
   $configOption = $applyConfig->messages[0]->configOption;
   echo "configOption: ".(int)$configOption."<br/>";
   echo "numberUpdated: ".$applyConfig->messages[0]->numberUpdated."<br/>";
-  
+
   }catch (APIException $e) {
       echo 'Caught exception: ',  $e->getMessage(), "<br/><br />\n";
       echo 'error code is: ', $e->getResponseCode()," ", $e->getReason(), "<br/><br />\n";
