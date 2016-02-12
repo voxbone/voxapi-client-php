@@ -2,7 +2,6 @@
     "name": "voxbone/voxapi-client-php",
     "type": "library",
     "description": "The Provisioning API enables Voxbone customers to automate the ordering and configuration of phone numbers and channels.n",
-    "keywords": ["DID, SIP Trunking, VoIP, SMS"],
     "homepage": "https://www.voxbone.com",
     "license": "MIT",
     "authors": [
