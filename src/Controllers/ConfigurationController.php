@@ -47,7 +47,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -97,7 +97,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -134,7 +134,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -176,7 +176,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -232,7 +232,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -269,7 +269,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -311,7 +311,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -367,7 +367,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -404,7 +404,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -446,7 +446,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -480,7 +480,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -514,7 +514,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -551,7 +551,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -594,7 +594,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -644,7 +644,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -681,7 +681,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -723,7 +723,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -764,7 +764,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -805,7 +805,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -846,7 +846,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -887,7 +887,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -928,7 +928,7 @@ class ConfigurationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
 }
