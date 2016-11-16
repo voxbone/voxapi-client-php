@@ -54,7 +54,7 @@ class CdrsController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -88,7 +88,7 @@ class CdrsController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -128,7 +128,7 @@ class CdrsController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
 }

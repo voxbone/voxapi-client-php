@@ -44,7 +44,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -81,7 +81,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -125,7 +125,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -172,7 +172,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -219,7 +219,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -261,7 +261,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -302,7 +302,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -361,7 +361,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -398,7 +398,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -439,7 +439,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -480,7 +480,7 @@ class OrderingController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
 }

@@ -58,7 +58,7 @@ class RegulationController {
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
         }
-        return $response->body;
+        return $response;
     }
         
         
@@ -101,7 +101,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -142,7 +142,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -219,7 +219,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -263,7 +263,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -300,7 +300,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -349,7 +349,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
      /**
@@ -394,7 +394,7 @@ class RegulationController {
         if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
             throw new APIException("HTTP Response Not OK", $response->code);
         }
-        return $response->body;
+        return $response;
     }
 
         
@@ -437,7 +437,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
     /**
@@ -488,7 +488,7 @@ class RegulationController {
             throw new APIException("HTTP Response Not OK", $response->code);
         }
 
-        return $response->body;
+        return $response;
     }
         
 }
