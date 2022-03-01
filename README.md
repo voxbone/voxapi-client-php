@@ -1,3 +1,5 @@
+## WARNING: This repository is deprecated and should not be used. It does not receive any security patches or updates.
+
 Voxbone Provisioning API Library (PHP)
 =================
 
